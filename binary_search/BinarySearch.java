@@ -15,16 +15,29 @@ public class BinarySearch {
      * @param searchElement
      * @return
      */
+
+    // array: array de busqueda
+    // searchElement: elemento a buscar
+    // valor de retorno: indice en el array si hemos encontrado el elemento
+    //                   -1 si no hemos encontrado el elemento
     public static int binarySearch(int[] arr, int searchElement) {
+        // left y right son los extremos que vamos a buscar
         int left = 0;
         int right = arr.length - 1;
+        // solución iterativa: en cada vuelta del bucle vemos cual son los nuevos valores de right y left.
         while (left <= right) {
+            // calculamos el elemento del medio. Hacemos división entera previamente
             int mid = left + (right - left) / 2; // identical to (left + right) / 2 but avoids overflow
+
+
+            // Si encontramos el elemento en el medio ya está!
             if (arr[mid] == searchElement) { // Element found
                 return mid;
             }
+            // En caso de que el elemento sea mayor subimos el indice izquierdo
             if (arr[mid] < searchElement) { // Look in right half
                 left = mid + 1;
+            // En el otro caso subimos el indice derecho
             } else { // Look in left half
                 right = mid - 1;
             }
@@ -34,12 +47,14 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
+
         int[] arr = new int[] {1, 5, 35, 112, 258, 324};
+
         int[] searchArr = new int[] {1, 35, 112, 324, 67};
         int pos;
         for (int i = 0; i < searchArr.length; i++) {
             pos = binarySearch(arr, searchArr[i]);  //search key and get poistion
-            if (pos >= 0) {
+            if (pos >= 0) { 
                 System.out.println(searchArr[i] + "-> found at index : " + pos);
             } else {
                 System.out.println(searchArr[i] + "-> not found");
